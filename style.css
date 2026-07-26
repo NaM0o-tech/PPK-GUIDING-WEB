@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+* {
+    font-family: "Noto Sans Thai", sans-serif;
+    font-weight: 670;
+}
+
+/* background: linear-gradient(180deg, #63a9ff,#ffffff, #ff71f1) ; */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+        url(PPK_assets/ppk.jpg);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+}
+
+.container {
+    display: flex;
+
+    width: 24em;
+    height: 90%;
+
+    background: linear-gradient(
+        180deg, #9dc9ff,#ffffff, #ffaef7
+    );
+
+    border-radius: 50px;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    box-shadow: 0 0 80px rgba(255,255,255,0.35);
+    color: black;
+}
+
+.container h1 {
+    font-size: 3.5rem;
+    position: absolute;
+
+    top: 0.8em;
+
+    padding: 0;
+    margin: 0;
+}
+
+.container h3 {
+    font-size: 1.25rem;
+    
+    position:  absolute;
+
+    top: 6.7em;
+
+    padding: 0;
+    margin: 0;
+
+    color: rgba(0, 0, 56,0.67);
+}
+
+.container h5 {
+    font-size: 1.6rem;
+    
+    position:  absolute;
+
+    top: 6.3em;
+
+    padding: 0;
+    margin: 0;
+
+    color: rgba(0, 0, 56,0.8);
+}
+
+/*
+
+#circle1 {
+    display: flex;
+    width: 25em;
+    height: 25em;
+
+    border-radius: 50%;
+
+    background-color: #b3d5ff;
+    filter: blur(10px);
+
+    z-index: -10;
+
+    position: relative;
+    bottom: 20em;
+
+    margin: 0;
+    padding: 0;
+}
+
+#circle2 {
+    display: flex;
+    width: 30em;
+    height: 30em;
+
+    border-radius: 50%;
+
+    background-color: #fac5ff;
+    filter: blur(10px);
+
+    z-index: -2;
+
+    position: absolute;
+    top: 25em;
+}
+
+*/
+
+.container img {
+    display: flex;
+
+    width: 42%;
+    height: auto;
+
+    margin: 0;
+    padding: 0;
+}
+
+.container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 10em;
+    height: 3em;
+
+    position: absolute;
+
+    color: black;
+    font-size: 2rem;
+
+    border-radius: 30px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(173, 138, 255, 0.67),
+        rgba(180, 100, 255, 0.67)
+    );
+    border: 1px solid rgba(255,255,255,0.3);
+
+    transition: 0.2s;
+
+    position: absolute;
+    bottom: 3.1em;
+}
+
+.container button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+
+    background: linear-gradient(
+        180deg,
+        rgba(202, 180, 255, 0.67),
+        rgba(201, 143, 255, 0.67)
+    );
+}
+
+.container h4 {
+    font-size: 1.2rem;
+    color: #a860a1;
+    position: absolute;
+    bottom: 1.5em;
+    margin: 0;
+    padding: 0;
+}

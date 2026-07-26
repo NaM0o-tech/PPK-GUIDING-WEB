@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPK Smart Map</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="head">
+            <img id="ppklogo" src="../../PPK_assets/ppk_logo.png" alt="">
+            <h3 id="ppk_topic">แผนที่โรงเรียนพะเยาพิทยาคม</h3>
+        </div>
+
+        <!--
+        <div class="headstat">
+            <button id="statrefresh"><img id="opimg" src="../../PPK_icons/white_refresh.png" onclick="window.location.reload()"></button>
+        </div>
+        -->
+
+        <div class="mapcontainer">
+            <div id="map">
+                <img id="MAPIMG" src="../../PPK_assets/ppk_map.svg">
+
+                <div id="mapblack"></div>
+                <div id="mapblack2"></div>
+
+                <div id="pathdiv">
+                    
+                </div>
+
+                <div id="markers"></div>
+
+                <div id="POS">
+                    <span id="spanpos"></span>
+                </div>
+
+                <div id="mapcomment"> 
+                    
+                </div>
+
+                <div id="PIN">
+                    <img id="pinimg" src="../../PPK_icons/pin.webp">
+                    <div id="pin"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="foot">
+            <button id="zoomin" onclick="zoomin()">+</button>
+            <button id="zoomout" onclick="zoomout()">-</button>
+            <button id="resetmap" onclick="resetmap()">รีเซ็ต</button>
+        </div>
+
+        <div class="main">
+
+            <div class="handle"></div>
+            <div class="buffer_handle"></div>
+
+            <div class="header">
+                <button class="home">หน้าหลัก</button>
+                <button class="discover">ค้นพบ</button>
+                <button class="search">ค้นหา</button>
+                <button class="travel">เดินทาง</button>
+            </div>
+
+            <div class="BODY">
+
+                <div class="HOME">
+                    <h1 id="status">คุณอยู่ที่นี่</h1>
+                    <h2 id="topic">กำลังโหลด...</h2>
+                    <img id="ppkimg" src="../../PPK_assets/ppk.jpg" alt="">
+                    <u onclick="gotodiscover()">รายละเอียดเพิ่มเติม</u>
+
+                    <div class="options">
+                        <button><img id="opimg" src="../../PPK_icons/HOMEPAGE.png" onclick="goindex()"></button>
+                        <button><img id="opimg" src="../../PPK_icons/refresh.png" onclick="window.location.reload()"></button>
+                        <button><img id="opimg" src="../../PPK_icons/report_icon.png" onclick="Help()"></button>
+                        <button><img id="opimg" src="../../PPK_icons/setting.png" onclick="alert('เร็วๆนี้')"></button>
+                        <button><img id="opimg" src="../../PPK_icons/dubug_icon.png" onclick="debug()"></button>
+                    </div>
+                </div>
+
+                <div class="DISCOVER">
+                    <div class="discovertopic">
+                        <h3 id="discoverabout">...</h3>
+                        <h2 id="discoverplace">....</h2>
+                        
+                    </div>
+                    <div class="discoveroptions">
+                        <button id="discoverposition"><img src="../../PPK_icons/position.png"></button>
+                        <button id="discoverplaceposition"><img src="../../PPK_icons/building-icon.png"></button>
+                    </div>
+                    <div>
+                        <div class="discovermain">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="SEARCH">
+                    <div class="searchbar">
+                        <input id="searchinput" type="text" placeholder="ค้นหาสถานที่...">
+                        <button id="btnsearch"><img id="search_icon" src="../../PPK_icons/eye_icon.png" alt=""></button>
+                    </div>
+                    <div class="result">
+                    </div>
+
+                    <h3 class="statussearch">
+                        หากค้นหาจะมีสถานที่ปรากฎที่นี่ <br><br>
+                        กรอก 'อาคาร:' หรือ 'สถานที่:' เพื่อระบุสิ่งที่เจาะจง <br>
+                        กดรูปดวงตาเพื่อเปิดดูสถานที่ทั้งหมด!
+                    </h3>
+                </div>
+
+                <div class="TRAVEL">
+                    <h1>ไปยัง</h1>
+                    <h2 id="travelplace">--โปรดค้นหาสถานที่ก่อน--</h2>
+                    <div class="travelbox">
+                        <h3>ระยะทาง: <span id="dist">---</span> เมตร</h3>
+                    </div>
+                </div>
+
+                <div class="SETTING">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script src="script.js"></script>
+    <script src="../../script.js"></script>
+
+   
+</body>
+</html>

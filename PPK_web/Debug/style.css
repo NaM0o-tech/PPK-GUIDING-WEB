@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+* {
+    font-family: "Noto Sans Thai", sans-serif;
+    font-weight: 670;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+        url(../../PPK_assets/ppk.jpg);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+}
+
+.container {
+    display: flex;
+
+    width: 25em;
+    height: 65%;
+
+    background: linear-gradient(
+        180deg, #9dc9ff,#ffffff, #ffaef7
+    );
+
+    border-radius: 25px;
+
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    box-shadow: 0 0 30px rgba(255,255,255,0.35);
+    color: black;
+
+    transition: 0.2s;
+}
+
+.container h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+
+.container h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.5;
+}
+
+.container h2 {
+    display: flex;
+    margin: 0;
+    font-size: 2rem;
+    
+    position: absolute;
+    left: 0.5em;
+    top: 3em;
+}
+
+#back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3em;
+    height: 1.5em;
+
+    background-color: rgb(220, 220, 220);
+    color: black;
+    border: 2px solid rgb(135, 135, 135);
+
+    border-radius: 20px;
+
+    font-size: 1.5rem;
+
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+}
+
+.LL {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    flex-direction: column;
+
+    margin: 0;
+
+    position: absolute;
+    top: 9em;
+}
+
+.LL h3{
+    color: darkblue;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.LL p {
+    margin: 0;
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+#H3 {
+    display: flex;
+    margin: 0;
+    font-size: 1.8rem;
+    
+    position: absolute;
+    bottom: 5.6em;
+    left: 0.5em;
+}
+
+.OO {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    flex-direction: column;
+
+    margin: 0;
+
+    position: absolute;
+    bottom: 4em;
+    left: 3em;
+}
+
+.OO li {
+    color: rgb(75, 75, 75);
+}
+
