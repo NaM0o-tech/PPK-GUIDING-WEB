@@ -1,7 +1,7 @@
 
 
 function Help() {
-    window.location.href = "PPK_web/Help/index.html";
+    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Help/index.html";
 }
 
 function bug() {
@@ -13,7 +13,7 @@ function sc() {
 }
 
 function check_location() {
-    window.location.href = "PPK_web/Progess/index.html"  
+    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Progess/index.html"  
 }
 
 function goindex() {
@@ -21,7 +21,7 @@ function goindex() {
 }
 
 function debug() {
-    window.location.href = "PPK_web/Debug/index.html";
+    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Debug/index.html";
 }
 
 function goback() {
