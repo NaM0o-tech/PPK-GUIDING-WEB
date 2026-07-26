@@ -1064,31 +1064,31 @@ function IMG_FOR_MAP (yourplace) {
   switch (yourplace) {
     case "อาคาร:1":
       return [
-        ""
+        "PPK_Gallery/build1.png"
       ]
 
 
     case "อาคาร:2":
       return [
-        ""
+        "PPK_Gallery/build2.png"
       ]
 
 
     case "อาคาร:3":
       return [
-        ""
+        "PPK_Gallery/build3.jpg"
       ]
 
 
     case "อาคาร:4":
       return [
-        ""
+        "PPK_Gallery/build4.jpg"
       ]
 
 
     case "อาคาร:5":
       return [
-        ""
+        "PPK_Gallery/build5.jpg"
       ]
 
 
@@ -1107,27 +1107,27 @@ function IMG_FOR_MAP (yourplace) {
 
     case "สถานที่:ศาลาจริยธรรม":
       return [
-        ""
+        "PPK_Gallery/ethics.jpg"
       ]
 
     case "สถานที่:โรงอาหาร":
       return [
-        ""
+        "PPK_Gallery/canteen.jpg"
       ]
 
     case "สถานที่:หอประชุมโรงเรียน":
       return [
-        ""
+        "PPK_Gallery/auditorium.jpg"
       ]
 
     case "สถานที่:ลาน 80ปี":
       return [
-        ""
+        "PPK_Gallery/auditorium_multi.jpg"
       ]
 
     case "สถานที่:โดมโรงเรียน":
       return [
-        ""
+        "PPK_Gallery/dome.jpg"
       ]
 
     case "สถานที่:ห้องพยาบาล":
@@ -1137,12 +1137,12 @@ function IMG_FOR_MAP (yourplace) {
     
     case "สถานที่:ห้องน้ำ":
       return [
-        ""
+        "PPK_Gallery/restroom.jpg"
       ]
 
     case "สถานที่:ศูนย์กีฬา":
       return [
-        ""
+        "PPK_Gallery/sportcenter.jpg"
       ]
 
     case "สถานที่:สนามกีฬา":
@@ -1177,7 +1177,7 @@ function IMG_FOR_MAP (yourplace) {
 
     case "สถานที่:หอเกียรติยศ":
       return [
-        ""
+        "PPK_Gallery/fame.jpg"
       ]
     
     case "ไม่ได้อนุญาตตำแหน่ง":
