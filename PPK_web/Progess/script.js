@@ -11,7 +11,7 @@ navigator.geolocation.watchPosition(
         text1.style.color = "#7cbe48";
         text2.style.color = "#236628";
 
-        window.location.href = "../../PPK_web/Map/index.html";
+        window.location.href = "/PPK-GUIDING-WEB/PPK_web/Map/index.html";
     },
     () => {
         text1.textContent = "หาตำแหน่งไม่ได้!";
@@ -26,7 +26,7 @@ navigator.geolocation.watchPosition(
         skip_button.classList.add("skip")
 
         skip_button.addEventListener("click", () => {
-            window.location.href = "../../PPK_web/Map/index.html"
+            window.location.href = "/PPK-GUIDING-WEB/PPK_web/Map/index.html"
         })
 
 
