@@ -1,7 +1,14 @@
 
+function base_path() {
+    if (window.location.pathname.includes("/PPK-GUIDING-WEB")) {
+        return "/PPK-GUIDING-WEB";
+    }
+    return "";
+}
+
 
 function Help() {
-    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Help/index.html";
+    window.location.href = base_path() + "/PPK_web/Help/index.html";
 }
 
 function bug() {
@@ -13,15 +20,19 @@ function sc() {
 }
 
 function check_location() {
-    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Progess/index.html"  
+    window.location.href = base_path() + "/PPK_web/Progess/index.html"  
 }
 
 function goindex() {
-    window.location.href = "/PPK-GUIDING-WEB/index.html"
+    window.location.href = base_path() + "/index.html"
 }
 
 function debug() {
-    window.location.href = "/PPK-GUIDING-WEB/PPK_web/Debug/index.html";
+    window.location.href = base_path() + "/PPK_web/Debug/index.html";
+}
+
+function map() {
+    window.location.href = base_path() + "/PPK_web/Map/index.html";
 }
 
 function goback() {
