@@ -318,7 +318,7 @@ body {
     width: 80px;
     height: 55px;
 
-    clip-path: polygon(0% 45%, 100% 0%, 100% 100%, 0% 45%);
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%, 0% 50%);
     
     transform-origin: left center; 
     transform: translateY(-50%) rotate(0deg);
