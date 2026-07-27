@@ -274,6 +274,8 @@ function initcompass() {
           window.addEventListener('deviceorientation', handle_orientation, true)
 
           notice.style.opacity = "0"
+        }else {
+          notice.style.opacity = "1"; 
         }
 
       })
