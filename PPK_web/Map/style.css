@@ -98,7 +98,7 @@ body {
     height: 2.5em;
     width: 20em;
 
-    position: absolute;
+    position: relative;
     top: 2.2em;
     gap: 0.8em;
 
