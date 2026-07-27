@@ -252,8 +252,8 @@ function handle_orientation(event) {
     //for android
     heading = 360 - event.alpha;
   }
-
-  heading -= 90;
+  
+  heading = (heading - 90 + 360) % 360;
 
   compass_arrow.style.transform = `translateY(-50%) rotate(${heading}deg)`;
 }
