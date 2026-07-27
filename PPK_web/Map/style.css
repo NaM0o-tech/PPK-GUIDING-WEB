@@ -606,7 +606,8 @@ body {
     background: rgba(0, 0, 0, 0.803);
 
     position: absolute;
-    top: 69%;
+    top: 66.7%;
+    right: 2.5%;
 
     border-radius: 15px;
 }
