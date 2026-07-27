@@ -313,17 +313,15 @@ body {
         rgba(60, 60, 255, 0.959),
         rgba(0, 0, 255, 0.021)
     );
-    top: 50%;
+    top: 100%;
     left: 100%;
     width: 80px;
     height: 55px;
 
-    clip-path: polygon(0% 45%, 100% 0%, 100% 100%, 0% 55%);
+    clip-path: polygon(0% 45%, 100% 0%, 100% 100%, 0% 45%);
     
     transform-origin: left center; 
     transform: translateY(-50%) rotate(0deg);
-
-    transition: 0.1s;
 
     opacity: 0;
 }
