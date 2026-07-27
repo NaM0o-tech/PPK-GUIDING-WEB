@@ -98,7 +98,7 @@ body {
     height: 2.5em;
     width: 20em;
 
-    position: fixed;
+    position: absolute;
     top: 2.2%;
     gap: 0.8em;
 
@@ -146,6 +146,58 @@ body {
 
 #statrefresh:hover {
     transform: rotate(45deg);
+}
+
+
+.notice {
+    display: flex;
+    position: absolute;
+    z-index: 5;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    gap: 0.1em;
+
+    width: 10em;
+    height: 5em;
+
+    left: 1em;
+    top: 6em;
+
+    border: 2px solid rgb(247, 246, 246);
+    border-radius: 15px;
+
+    background: rgba(0,0,0,0.85);
+
+    transition: 0.2s;
+}
+
+.notice h3 {
+    margin: 0;
+}
+
+.notice button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.8em;
+
+    font-size: 1.1rem;
+
+    color: black;
+
+    border: 1.5px solid rgb(255, 187, 0);
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+.notice button:hover {
+    transform: scale(1.05);
+    opacity: 0.5;
 }
 
 .mapcontainer {
@@ -253,21 +305,30 @@ body {
     left: 1em;
 }
 
-#POS div {
+#pos-arrow {
     display: flex;
-    width: 0.5em;
-    height: 0.5em;
-    border-radius: 50px;
-
     position: absolute;
+    background: linear-gradient(
+        90deg,
+        rgba(60, 60, 255, 0.959),
+        rgba(0, 0, 255, 0.021)
+    );
+    top: 50%;
+    left: 100%;
+    width: 80px;
+    height: 55px;
 
-    background-color: rgb(255, 255, 255);
+    clip-path: polygon(0% 45%, 100% 0%, 100% 100%, 0% 55%);
+    
+    transform-origin: left center; 
+    transform: translateY(-50%) rotate(0deg);
 
     transition: 0.1s;
+
+    opacity: 0;
 }
 
-
-#POS span {
+#spanpos {
     display: flex;
     background-color: rgb(255, 122, 69);
     position: absolute;

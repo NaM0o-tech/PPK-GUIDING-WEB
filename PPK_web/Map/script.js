@@ -7,6 +7,9 @@ var lonMax = 99.91124395261497
 
 const main = document.querySelector(".main")
 
+const notice = document.querySelector(".notice")
+notice.style.opacity = "0";
+
 const header = document.querySelector(".header")
 const home = document.querySelector(".home")
 const travel = document.querySelector(".travel")
@@ -211,6 +214,81 @@ function resetmap() {
   map.style.transform =
     `translate(0px,0px)`;
 }
+
+//-----------------------------------------------------------------------------------------------------------
+//COMPASS
+const compass_arrow = document.getElementById("pos-arrow")
+const compass_allow = localStorage.getItem("compass_allow")
+
+if (compass_allow === "true" && !is_ios()) {
+  autoStartCompass();
+} else {
+  notice.style.opacity = "1"; 
+  compass_arrow.style.display = "flex"
+  compass_arrow.style.opacity = "0"
+}
+
+
+function autoStartCompass() {
+  if ('ondeviceorientationabsolute' in window) {
+    window.addEventListener('deviceorientationabsolute', handle_orientation, true);
+  } else {
+    window.addEventListener('deviceorientation', handle_orientation, true);
+  }
+  notice.style.opacity = "0"; 
+}
+
+function handle_orientation(event) {
+
+  compass_arrow.style.display = "flex"
+  compass_arrow.style.opacity = "1"
+
+  let heading = 0;
+
+  //for ios
+  if (event.webkitCompassHeading) {
+    heading = event.webkitCompassHeading;
+  }else if(event.alpha !== null) {
+    //for android
+    heading = 360 - event.alpha;
+  }
+
+  compass_arrow.style.transform = `translateY(-50%) rotate(${heading}deg)`;
+}
+
+function initcompass() {
+
+  notice.style.opacity = "0"
+
+  if( typeof DeviceMotionEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function' ) {
+    // FOR IOS
+    // if ios 13+ ต้องขออนุญาตใช้ก่อน
+
+    DeviceOrientationEvent.requestPermission()
+      .then(permissionState => {
+
+        if(permissionState === 'granted') {
+          localStorage.setItem("compass_allow", "true");
+          window.addEventListener('deviceorientation', handle_orientation, true)
+        }
+
+      })
+
+
+  } else {
+
+    localStorage.setItem("compass_allow", "true");
+    
+    autoStartCompass();
+
+  }
+}
+
+function is_ios() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+
 
 //-----------------------------------------------------------------------------------------------------------
 
