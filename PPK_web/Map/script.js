@@ -260,7 +260,7 @@ function handle_orientation(event) {
 
 function initcompass() {
 
-  notice.style.opacity = "0"
+  
 
   if( typeof DeviceMotionEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function' ) {
     // FOR IOS
@@ -272,6 +272,10 @@ function initcompass() {
         if(permissionState === 'granted') {
           localStorage.setItem("compass_allow", "true");
           window.addEventListener('deviceorientation', handle_orientation, true)
+
+          notice.style.opacity = "0"
+        }else {
+          
         }
 
       })
