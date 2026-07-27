@@ -83,6 +83,47 @@ function gotodiscover() {
 
 const handle = document.querySelector(".buffer_handle")
 
+
+let startY;
+
+let initialheight = 26;
+let currentheight = initialheight
+let heightnow = currentheight
+
+handle.addEventListener("touchstart", e => {
+  startY = e.touches[0].clientY;
+  main.style.transition = "none";
+});
+
+handle.addEventListener("touchmove", e => {
+  const deltapx = e.touches[0].clientY - startY;
+  const delta = deltapx / parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+  heightnow = currentheight - delta;
+
+  if(heightnow < 5.5) {
+    heightnow = 5.5;
+  }
+
+  if(heightnow > initialheight) {
+    heightnow = initialheight;
+  }
+
+  main.style.height = `${heightnow}em`;
+});
+
+handle.addEventListener("touchend", () => {
+  main.style.transition = "height 0.6s cubic-bezier(0.32, 0.72, 0, 1)";
+
+  if(heightnow > initialheight) {
+    heightnow = initialheight;
+  }
+
+  currentheight = heightnow;
+  main.style.height = `${currentheight}em`;
+});
+
+/*
 let startY;
 let currentY = 0;
 
@@ -126,6 +167,8 @@ handle.addEventListener("touchend", ()=>{
   main.style.transform = 
     `translateY(${currentY}px)`;
 })
+
+*/
 
 //-----------------------------------------------------------------------------------------------------------
 
@@ -523,6 +566,7 @@ navigator.geolocation.watchPosition(
 
       tempwhereplace = des_result
       
+      compass_arrow.style.opacity = "1"
 
       if(discoverchoose === 1) {
         discoverplace.style.color = "rgb(231, 204, 255)";
@@ -542,6 +586,8 @@ navigator.geolocation.watchPosition(
       place.style.color = "red"
       place.innerText = "เลยเขตพื้นที่โรงเรียน"
       describe.innerText = "คุณอยู่นอกพื้นที่!"
+
+      compass_arrow.style.opacity = "0"
 
       if(discoverchoose === 1) {
         discoverplace.style.color = "rgb(115, 115, 115)";
@@ -565,6 +611,8 @@ navigator.geolocation.watchPosition(
     describe.innerText = "เปิดตำแหน่งของคุณก่อน!"
 
     mapimg.style.border = "2px solid red";
+
+    compass_arrow.style.opacity = "0"
 
     discoverplace.style.color = "rgb(115, 115, 115)";
     discoverfirstcolor = "rgb(115, 115, 115)";

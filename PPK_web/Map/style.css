@@ -78,7 +78,7 @@ body {
     );
     color: white;
 
-    border-radius: 40px;
+    border-radius: 40px 40px 0 0;
     box-shadow: 0 0 80px rgb(29, 29, 29);
 
     overflow: hidden;
@@ -177,6 +177,7 @@ body {
 
 .notice h3 {
     margin: 0;
+    font-size: 0.98rem;
 }
 
 .notice button {
@@ -211,7 +212,7 @@ body {
     height: 25em;
 
     position: absolute;
-    top: 15%;
+    top: 7.5em;
 
     overflow: hidden;
     box-shadow: 0 0 30px white;
@@ -510,18 +511,23 @@ body {
     justify-content: center;
     align-items: center;
 
+    flex-direction: column;
+
     color: white;
 
     width: 23em;
     height: 26em;
 
     position: fixed;
-    bottom: 1%;
+    bottom: 0;
 
     background: rgba(0,0,0,0.77);
-    border-radius: 25px;
+    border-radius: 25px 25px 0px 0px;
 
     z-index: 6;
+
+    container-type: size;
+    container-name: mainsheet;
 }
 
 .handle {
@@ -566,6 +572,8 @@ body {
     background: rgba(0,0,0,0.7);
     border-radius: 10px;
     border: 1.6px solid rgb(54, 54, 54);
+
+    transition: all 0.3s;
 }
 
 .header button {
@@ -643,6 +651,8 @@ body {
     display: flex;
     width: 95%;
     height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .hide {
@@ -658,7 +668,7 @@ body {
     flex-direction: column;
 
     width: 95%;
-    height: 19.5em;
+    height: 73%;
  
     position: absolute;
     bottom: 0em;
@@ -678,7 +688,7 @@ body {
 
     color: gray;
 
-    transition: 0.2s;
+    transition: all 0.2s;
 }
 
 #topic {
@@ -690,6 +700,8 @@ body {
     left: 0.2em;
 
     font-size: 1.6rem;
+
+    transition: all 0.3s;
 }
 
 #ppkimg {
@@ -697,7 +709,7 @@ body {
     display: flex;
     
     position: absolute;
-    bottom: 2.6em;
+    bottom: 15%;
     left: 0.2em;
 
     width: 65%;
@@ -706,12 +718,14 @@ body {
     border: 1px solid white;
 
     border-radius: 15px;
+
+    transition: all 0.3s;
 }
 
 .HOME u {
     color: rgb(116, 116, 116);
     position: absolute;
-    bottom: 0.8em;
+    bottom: 5%;
     left: 0.6em;
     font-size: 0.85rem;
 }
@@ -735,7 +749,7 @@ body {
     flex-direction: column;
 
     width: 95%;
-    height: 19.5em;
+    height: 73%;
     
     position: absolute;
     bottom: 0em;
@@ -759,11 +773,15 @@ body {
     position: absolute;
     top: 1.1em;
     left: 0.2em;
+
+    transition: all 0.3s;
 }
 
-.DISCOVER h3 {
+#discoverabout {
     margin: 0;
     font-size: 1rem;
+
+    transition: all 0.3s;
 }
 
 #discoverplace {
@@ -771,6 +789,8 @@ body {
     font-size: 1.4rem;
 
     color: rgb(231, 204, 255);
+
+    transition: all 0.3s;
 }
 
 .discovermain {
@@ -783,13 +803,15 @@ body {
     background-color: rgba(0, 0, 0, 0.582);
 
     position: absolute;
-    bottom: 5em;
+    bottom: 25%;
     left: 0.5em;
 
     border: 1px solid white;
     border-radius: 15px;
 
     overflow-y: scroll;
+
+    transition: all 0.3s;
 }
 
 .discovermain li {
@@ -809,6 +831,8 @@ body {
     position: absolute;
     top: 1.5em;
     right: 0.4em;
+
+    transition: all 0.3s;
 }
 
 .discoveroptions button {
@@ -840,7 +864,7 @@ body {
     flex-direction: column;
 
     width: 95%;
-    height: 19.5em;
+    height: 73%;
  
     position: absolute;
     bottom: 0em;
@@ -861,6 +885,8 @@ body {
 
 .TRAVEL h1 h2 h3 h4 {
     margin: 0;
+
+    transition: all 0.3s;
 }
 
 .TRAVEL h2 {
@@ -892,6 +918,8 @@ body {
     border: 1px solid white;
 
     color: white;
+
+    transition: all 0.3s;
 }
 
 .travelbox h3 {
@@ -899,6 +927,8 @@ body {
     margin-top: 0.2em;
     margin-left: 0.6em;
     font-size: 1.6rem;
+
+    transition: all 0.3s;
 }
 
 .canceltravel  {
@@ -933,7 +963,7 @@ body {
     flex-direction: column;
 
     width: 95%;
-    height: 19.5em;
+    height: 73%;
  
     position: absolute;
     bottom: 0em;
@@ -956,6 +986,8 @@ body {
     top: 0.8em;
 
     background: rgba(0,0,0,0.5);
+
+    transition: all 0.3s;
 }
 
 #searchinput {
@@ -1009,6 +1041,8 @@ body {
 
     overflow-y: scroll;
     overflow-x: hidden;
+
+    transition: all 0.3s;
 }
 
 .SEARCH h3 {
@@ -1129,10 +1163,139 @@ body {
     flex-direction: column;
 
     width: 95%;
-    height: 19.5em;
+    height: 73%;
  
     position: absolute;
     bottom: 0em;
 
     transition: 0.2s;
+}
+
+@container mainsheet (max-height: 25em) {
+    
+    .header {
+        top: 3em;
+    }
+
+    /*HOME*/
+    #ppkimg {
+        width: clamp(40%, 50cqh, 70%);
+    }
+    #topic {
+        top: 1.3em;
+    }
+    #status {
+        top: 0.7em;
+    }
+
+     /*DISCOVER*/
+    .discovermain {
+        bottom: 15%;
+    }
+
+    /*SEARCH*/
+
+
+    /*TRAVEL*/
+    .TRAVEL h1 {
+        opacity: 0;
+    }
+    #travelplace {
+        top: 0em;
+    }
+
+}
+
+@container mainsheet (max-height: 20em) {
+     
+    .header {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /*HOME*/
+    #ppkimg {
+        width: clamp(20%, 45cqh, 40%);
+    }
+    .options {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+     /*DISCOVER*/
+     .discovermain {
+        bottom: 0%
+    }
+    .discovertopic {
+        top: 0.3em;
+    }
+
+    /*SEARCH*/
+    .statussearch {
+        opacity: 0;
+    }
+    .searchbar {
+        top: 0.1em;
+    }
+    .result {
+        bottom: 0.8em;
+        height: clamp(5%, 60cqh, 50%);
+    }
+
+    /*TRAVEL*/
+    #travelplace {
+        opacity: 0;
+    }
+
+}
+
+@container mainsheet (max-height: 11em) {
+
+     /*HOME*/
+    #topic {
+        top: 0em;
+    }
+    #status {
+        opacity: 0;
+    }
+    #ppkimg {
+        opacity: 0;
+    }
+
+     /*DISCOVER*/
+     .discoveroptions {
+        opacity: 0;
+        pointer-events: none;
+    }
+    #discoverabout {
+        display: none;
+    }
+    .discovermain {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .discovertopic {
+        top: 0em;
+
+        transform: translateX(-50%);
+        left: 50%;
+
+        width: 20em;
+
+        justify-content: center;
+       
+    }
+
+
+    /*SEARCH*/
+    .result {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /*TRAVEL*/
+    .canceltravel {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
