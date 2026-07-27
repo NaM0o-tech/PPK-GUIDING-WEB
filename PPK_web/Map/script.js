@@ -349,7 +349,7 @@ function Process_MAP(lat, lon) {
     //console.log(`top: ${result_lat} left: ${result_lon}`)
 
     return {
-        top: result_lat,
+        top: 100-result_lat,
         left: result_lon
     }
 }
@@ -508,10 +508,19 @@ function discoverchange(which) {
 //--------------------------------------------------------------------------------------------------------
 //TRAVEL
 
+const pathsvg = document.getElementById("pathsvg")
+pathsvg.innerHTML = "";
+
 const DIST = document.getElementById("dist")
 
 var latnow;
 var lonnow;
+
+var POStop;
+var POSleft;
+
+var tempPOStop;
+var tempPOSleft;
 
 navigator.geolocation.watchPosition(
 
@@ -541,10 +550,16 @@ navigator.geolocation.watchPosition(
     if (isInArea) {
 
       let { top, left } = Process_MAP(lat,lon)
-      top = 100 - top
       pos.style.left = `${left}%`
       pos.style.top = `${top}%`
 
+      POSleft = left;
+      POStop = top;
+
+      if(tempPOSleft == null && tempPOStop == null) {
+        tempPOSleft = POSleft;  
+        tempPOStop = POStop;
+      }
 
       whereplace = Where_Are_You(lat,lon,describe)
 
@@ -1139,7 +1154,6 @@ setInterval(() => {
     let [disminlat,dismaxlat,disminlon,dismaxlon] = checkdata_getlatlon;
     let [dis_y,dis_x] = make_2chord(disminlat,dismaxlat,disminlon,dismaxlon)
     let {top , left} = Process_MAP(dis_y,dis_x)
-    top = 100-top
 
     pin.style.left = `${left}%`
     pin.style.top = `${top}%`
@@ -1151,6 +1165,21 @@ setInterval(() => {
       mapblackchange = 0;
     }
     pin.style.display = "none"
+  }
+
+  let checkdata_tracoords = Getlatlon_maxmin(starttravelsearch);
+
+  if(starttra && checkdata_tracoords && tempPOSleft != null && tempPOStop != null) {
+
+    let [traminlat,tramaxlat,traminlon,tramaxlon] = checkdata_tracoords;
+
+    let [tra_y,tra_x] = make_2chord(traminlat,tramaxlat,traminlon,tramaxlon)
+    let {top , left} = Process_MAP(tra_y,tra_x)
+    pathsvg.innerHTML = `<polyline points="${tempPOSleft},${tempPOStop} ${left},${top}"></polyline>`;
+  }else {
+    pathsvg.innerHTML = ``;
+    tempPOSleft = null;
+    tempPOStop = null;
   }
 
   //console.log(starttravelsearch,discoversearch,discoverchoose)

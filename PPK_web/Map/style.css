@@ -412,16 +412,28 @@ body {
     top: 0.4em;
 }
 
-#pathdiv {
-    display: flex;
+#pathsvg {
     width: 100%;
     height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.068);
-
     position: absolute;
+    top: 0;
+    left: 0;
+}
 
-    opacity: 0;
+#pathsvg polyline {
+
+    stroke: #804eff;
+    stroke-width: 0.8;
+    stroke-linecap: "round";
+    stroke-linejoin: "round";
+
+    fill: "none";
+
+    filter: 
+      
+      drop-shadow(0 0 0.4px #ffffff64)
+      
+      drop-shadow(0 0 1px #ddeefff8);
 }
 
 #pathdiv div {
@@ -719,7 +731,7 @@ body {
 
     border-radius: 15px;
 
-    transition: all 0.3s;
+    transition: all 0.05s;
 }
 
 .HOME u {
