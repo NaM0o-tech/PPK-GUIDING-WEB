@@ -253,6 +253,8 @@ function handle_orientation(event) {
     heading = 360 - event.alpha;
   }
 
+  heading -= 90;
+
   compass_arrow.style.transform = `translateY(-50%) rotate(${heading}deg)`;
 }
 
