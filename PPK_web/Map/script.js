@@ -342,12 +342,18 @@ var discoverfirstcolor;
 function discoverupdate(which) {
   if(which === 1) {
     discoverabout.innerText = "ตำแหน่งของคุณ";
-    discoverplace.innerText = buffer_whereplace ?? "....";
+    discoverplace.innerText = tempwhereplace ?? "....";
     discoverplace.style.color = discoverfirstcolor ?? "rgb(115, 115, 115)";
     describeplacenow(buffer_whereplace)
   }else if(which === 2) {
     discoverabout.innerText = "ผลการค้นหา";
-    discoverplace.innerText = (discoversearch?.replace("สถานที่:", "") ?? discoversearch) ?? "กรุณาค้นหาสถานที่ก่อน";
+    
+    let dis_result = discoversearch
+    ?.replace(/^สถานที่:/, "")        // ถ้าเจอ "สถานที่:" ให้ลบทิ้ง
+    ?.replace(/^อาคาร:/, "อาคาร ");    // ถ้าเจอ "อาคาร:" ให้เปลี่ยนเป็น "อาคาร " (มีช่องว่าง)
+
+    discoverplace.innerText = dis_result?.trim() || "กรุณาค้นหาสถานที่ก่อน";
+
     discoverplace.style.color = "rgb(255, 234, 140)";
     describeplacenow(discoversearch ?? "กรุณาค้นหาสถานที่ก่อน")
   }
@@ -415,7 +421,11 @@ navigator.geolocation.watchPosition(
 
       whereplace = Where_Are_You(lat,lon,describe)
 
-      describe.innerText = `${whereplace}` /* TELL WHERE ARE UUUUU*/
+      let des_result = whereplace
+      ?.replace(/^สถานที่:/, "")
+      ?.replace(/^อาคาร:/, "อาคาร ");
+
+      describe.innerText = `${des_result}` /* TELL WHERE ARE UUUUU*/
 
       buffer_whereplace = whereplace;
 
@@ -427,7 +437,7 @@ navigator.geolocation.watchPosition(
 
       mapimg.style.border = "2px solid blue";
 
-      tempwhereplace = whereplace.replace("สถานที่:","");
+      tempwhereplace = des_result
       
 
       if(discoverchoose === 1) {
@@ -509,7 +519,9 @@ function createBOX(obj) {
   const title = document.createElement("h4");
   box.appendChild(title);
 
-  let tempitem = item.replace("สถานที่:","");
+  let tempitem = item
+    ?.replace(/^สถานที่:/, "")
+    ?.replace(/^อาคาร:/, "อาคาร ");
 
   title.textContent = tempitem;
 
@@ -644,7 +656,14 @@ function delallsearch() {
 var starttravelsearch = (localStorage.getItem("starttravelsearch"));
 var tempstarttravelsearch;
 if (starttravelsearch !== null && starttravelsearch !== "null") {
-  tempstarttravelsearch = starttravelsearch.replace("สถานที่:","");
+
+  let travel_result = starttravelsearch
+    ?.replace(/^สถานที่:/, "")
+    ?.replace(/^อาคาร:/, "อาคาร ");
+
+  tempstarttravelsearch = travel_result
+
+
   startTravel(tempstarttravelsearch,starttravelsearch);
 }
 
