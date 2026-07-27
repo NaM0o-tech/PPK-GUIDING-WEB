@@ -310,11 +310,11 @@ body {
     position: absolute;
     background: linear-gradient(
         90deg,
-        rgba(60, 60, 255, 0.959),
+        rgb(60, 60, 255),
         rgba(0, 0, 255, 0.021)
     );
-    top: 100%;
-    left: 100%;
+    top: 50%;
+    left: 50%;
     width: 80px;
     height: 55px;
 
@@ -324,6 +324,8 @@ body {
     transform: translateY(-50%) rotate(0deg);
 
     opacity: 0;
+
+    z-index: -2;
 }
 
 #spanpos {
