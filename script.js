@@ -36,12 +36,14 @@ function navigateTo(relativePath) {
 // IOS is so sensitive bruh
 // ----------------------------------------------------------------------------------------------------
 
-function Help() {
-    navigateTo("/PPK_web/Help/index.html");
-}
+
 
 function check_location() {
     navigateTo("/PPK_web/Progess/index.html");
+}
+
+function Help() {
+    navigateTo("/PPK_web/Help/index.html");
 }
 
 function goindex() {
@@ -52,7 +54,7 @@ function debug() {
     navigateTo("/PPK_web/Debug/index.html");
 }
 
-function map() {
+function gotomap() {
     navigateTo("/PPK_web/Map/index.html");
 }
 
