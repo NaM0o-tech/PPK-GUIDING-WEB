@@ -869,6 +869,10 @@ let mapcom_youarehere = document.createElement("div")
 mapcom_youarehere.textContent = "คุณอยู่ที่นี่";
 let mapcom_place = document.createElement("div")
 
+//place เป็นตัวกลาง
+let mapcomx_change = 0;
+let mapcomy_change = 10;
+
 
 
 let searchBtn = document.getElementById("btnsearch");
@@ -940,7 +944,7 @@ function startTravel(PLACE,EXTPLACE) {
   const cancel_button = document.createElement("button")
   tralvelbox.appendChild(cancel_button);
   cancel_button.classList.add("canceltravel");
-  cancel_button.textContent = "ยกเลิกเดินทาง"
+  cancel_button.textContent = "หยุดเดินทาง"
 
   cancel_button.addEventListener("click", ()=> {
     stopTravel();
@@ -964,9 +968,23 @@ function startTravel(PLACE,EXTPLACE) {
   let {top , left} = Process_MAP(tra_y,tra_x)
  
   mapcom_place.style.left = `${left}%`
-  mapcom_place.style.top = `${top+8}%`
+  mapcom_place.style.top = `${top}%`
 
   mapcom_place.textContent = `ไปยัง ${PLACE}`;
+
+  if(tempPOStop >= top) {
+    mapcomy_change = 5;
+  }else {
+    mapcomy_change = -5;
+  }
+  mapcom_place.style.top = `${top + mapcomy_change}%`
+
+  // if(tempPOSleft >= left) {
+  //   mapcomx_change = 5;
+  // }else {
+  //   mapcomx_change = -5;
+  // }
+  mapcom_place.style.left = `${left + mapcomx_change}%`
 
   mapcomment.appendChild(mapcom_youarehere);
   mapcomment.appendChild(mapcom_place);
@@ -1351,8 +1369,8 @@ setInterval(() => {
 
   if(starttra && checkdata_tracoords && tempPOSleft != null && tempPOStop != null) {
 
-    mapcom_youarehere.style.left = `${tempPOSleft}%`
-    mapcom_youarehere.style.top = `${tempPOStop - 8}%`
+    mapcom_youarehere.style.left = `${tempPOSleft - mapcomx_change}%`
+    mapcom_youarehere.style.top = `${tempPOStop - mapcomy_change}%`
 
     let [traminlat,tramaxlat,traminlon,tramaxlon] = checkdata_tracoords;
     let [tra_y,tra_x] = make_2chord(traminlat,tramaxlat,traminlon,tramaxlon)

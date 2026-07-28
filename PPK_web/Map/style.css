@@ -401,12 +401,16 @@ body {
 
     position: absolute;
 
-    background-color: rgba(240, 248, 255, 0.822);
+    background-color: rgba(240, 253, 255, 0.35);
+    border: 1px solid rgba(240, 253, 255, 0.712);;
 
     font-size: 0.8rem;
-    width: 9em;
+    width: 8em;
 
-    color: black;
+    padding: 0 0.6em;
+
+    color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.2px rgb(255,255,255); */
 
     border-radius: 10px;
 
