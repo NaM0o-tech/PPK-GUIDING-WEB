@@ -1,25 +1,40 @@
-// 1. เพิ่มฟังก์ชัน base_path() ไว้ที่ด้านบนสุด
 function base_path() {
-    const repoName = "PPK-GUIDING-WEB";
-    const pathSegments = window.location.pathname.split("/");
+    const pathname = window.location.pathname;
+    const repoName = "PPK-GUIDING-WEB"; 
     
-    const repoIndex = pathSegments.indexOf(repoName);
-    
-    if (repoIndex !== -1) {
-        return pathSegments.slice(0, repoIndex + 1).join("/");
+    // แปลงเป็นตัวพิมพ์เล็กทั้งคู่เพื่อเทียบความถูกต้อง ป้องกันปัญหา Case Sensitive บน iPhone
+    const lowerPath = pathname.toLowerCase();
+    const lowerRepo = repoName.toLowerCase();
+    const index = lowerPath.indexOf(lowerRepo);
+
+    if (index !== -1) {
+        // ตัด Path จริงตามความยาวของชื่อ Repo
+        return pathname.substring(0, index + lowerRepo.length);
     }
-    
     return "";
 }
 
-// 2. ฟังก์ชัน navigateTo และส่วนอื่นๆ ที่เหลือ
 function navigateTo(relativePath) {
-    const cleanBase = base_path().replace(/\/$/, ""); 
-    const cleanPath = relativePath.startsWith("/") ? relativePath : "/" + relativePath;
-    window.location.href = cleanBase + cleanPath;
+    try {
+        const basePath = base_path();
+        
+        // จัดการเรื่อง / ซ้ำซ้อน
+        const cleanBase = basePath.endsWith("/") ? basePath.slice(0, -1) : basePath;
+        const cleanPath = relativePath.startsWith("/") ? relativePath : "/" + relativePath;
+        
+        // รวม URL แบบเต็มเพื่อความชัวร์บน iOS WebKit
+        const targetUrl = window.location.origin + cleanBase + cleanPath;
+
+        // ใช้ assign แทน href
+        window.location.assign(targetUrl);
+    } catch (err) {
+        // ถ้าเกิด Error บน iPhone มันจะ Alert ออกมาบอกทันที
+        alert("iOS Error: " + err.message);
+    }
 }
 
-// -------------------------------------------------------------
+// IOS is so sensitive bruh
+// ----------------------------------------------------------------------------------------------------
 
 function Help() {
     navigateTo("/PPK_web/Help/index.html");
