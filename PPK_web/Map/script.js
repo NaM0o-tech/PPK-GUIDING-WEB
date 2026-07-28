@@ -89,6 +89,12 @@ function gotodiscover() {
 //---------------------------------------------------------------------------------------------------------
 //SETTING
 
+const settingbutton = document.getElementById("settingbutton")
+
+settingbutton.addEventListener("click", ()=> {
+  gosetting();
+})
+
 function gosetting() {
   changeDisplay(5);
 }
