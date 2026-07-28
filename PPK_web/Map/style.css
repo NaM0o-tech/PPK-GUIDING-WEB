@@ -1289,6 +1289,10 @@ body {
 }
 
 .settingdiv div select {
+
+    align-items: center;
+    justify-content: center;
+
     width: 10em;
     height: 3em;
 
@@ -1300,6 +1304,11 @@ body {
     transform: translateY(-50%);
 
     pointer-events: auto;
+
+    background-color: #f0f0f0;
+    border: 1px solid black;
+
+    border-radius: 10px;
 }
 
 @container mainsheet (max-height: 25em) {
