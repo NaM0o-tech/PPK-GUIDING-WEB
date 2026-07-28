@@ -865,6 +865,11 @@ const pin = document.getElementById("PIN")
 const marker = document.getElementById("markers")
 
 const mapcomment = document.querySelector("#mapcomment")
+let mapcom_youarehere = document.createElement("div")
+mapcom_youarehere.textContent = "คุณอยู่ที่นี่";
+let mapcom_place = document.createElement("div")
+
+
 
 let searchBtn = document.getElementById("btnsearch");
 let searchicon = document.getElementById("search_icon");
@@ -929,8 +934,6 @@ var starttra;
 
 function startTravel(PLACE,EXTPLACE) {
 
-  
-
   travelplace.innerText = PLACE;
   travelplace.style.color = "yellow";
 
@@ -952,6 +955,22 @@ function startTravel(PLACE,EXTPLACE) {
 
   mark_search(marker,PLACE_COORDS.minlon,PLACE_COORDS.maxlat,PLACE_COORDS.maxlon,PLACE_COORDS.minlat);
 
+  mapcomment.innerHTML = "";
+
+  //mapcom_youarehere is in the interval.
+
+  let [traminlat,tramaxlat,traminlon,tramaxlon] = Getlatlon_maxmin(starttravelsearch)
+  let [tra_y,tra_x] = make_2chord(traminlat,tramaxlat,traminlon,tramaxlon)
+  let {top , left} = Process_MAP(tra_y,tra_x)
+ 
+  mapcom_place.style.left = `${left}%`
+  mapcom_place.style.top = `${top+8}%`
+
+  mapcom_place.textContent = `ไปยัง ${PLACE}`;
+
+  mapcomment.appendChild(mapcom_youarehere);
+  mapcomment.appendChild(mapcom_place);
+
   starttra = true;
 }
 
@@ -962,6 +981,8 @@ function stopTravel() {
   starttra = false;
   DIST.innerText = "---";
   cancel_search();
+
+  mapcomment.innerHTML = "";
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -1330,10 +1351,13 @@ setInterval(() => {
 
   if(starttra && checkdata_tracoords && tempPOSleft != null && tempPOStop != null) {
 
-    let [traminlat,tramaxlat,traminlon,tramaxlon] = checkdata_tracoords;
+    mapcom_youarehere.style.left = `${tempPOSleft}%`
+    mapcom_youarehere.style.top = `${tempPOStop - 8}%`
 
+    let [traminlat,tramaxlat,traminlon,tramaxlon] = checkdata_tracoords;
     let [tra_y,tra_x] = make_2chord(traminlat,tramaxlat,traminlon,tramaxlon)
     let {top , left} = Process_MAP(tra_y,tra_x)
+
     pathsvg.innerHTML = `<polyline points="${tempPOSleft},${tempPOStop} ${left},${top}"></polyline>`;
   }else {
     pathsvg.innerHTML = ``;
