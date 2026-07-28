@@ -26,7 +26,7 @@ navigator.geolocation.watchPosition(
         skip_button.classList.add("skip")
 
         skip_button.addEventListener("click", () => {
-            window.location.href = "/PPK-GUIDING-WEB/PPK_web/Map/index.html"
+            map()
         })
 
 
