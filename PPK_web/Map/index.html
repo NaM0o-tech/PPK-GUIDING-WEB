@@ -98,7 +98,7 @@
                         <button><img id="opimg" src="../../PPK_icons/HOMEPAGE.png" onclick="goindex()"></button>
                         <button><img id="opimg" src="../../PPK_icons/refresh.png" onclick="window.location.reload()"></button>
                         <button><img id="opimg" src="../../PPK_icons/report_icon.png" onclick="Help()"></button>
-                        <button><img id="opimg" src="../../PPK_icons/setting.png" onclick="alert('เร็วๆนี้')"></button>
+                        <button><img id="opimg" src="../../PPK_icons/setting.png" onclick="gosetting()"></button>
                         <button><img id="opimg" src="../../PPK_icons/location.png" onclick="debug()"></button>
                     </div>
                 </div>
@@ -144,7 +144,18 @@
                 </div>
 
                 <div class="SETTING">
+                    <h2>การตั้งค่า</h2>
+                    <button onclick="changeDisplay(1);">กลับ</button>
 
+                    <div class="settingdiv">
+                        <div>
+                            <h2>พื้นหลัง</h2>
+                            <select name="background-color" id="bgcolor">
+                                <option value="default">ปกติ</option>
+                                <option value="blue & fuchsia">ฟ้า & บานเย็น</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
             </div>

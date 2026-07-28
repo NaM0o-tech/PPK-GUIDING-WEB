@@ -16,11 +16,12 @@ const travel = document.querySelector(".travel")
 const search = document.querySelector(".search")
 const discover = document.querySelector(".discover")
 
-const BODY = document.querySelectorAll(".HOME , .SEARCH , .TRAVEL, .DISCOVER")
+const BODY = document.querySelectorAll(".HOME , .SEARCH , .TRAVEL, .DISCOVER , .SETTING")
 const HOME = document.querySelector(".HOME")
 const SEARCH = document.querySelector(".SEARCH")
 const DISCOVER = document.querySelector(".DISCOVER")
 const TRAVEL = document.querySelector(".TRAVEL")
+const SETTING = document.querySelector(".SETTING")
 
 let choose = Number(localStorage.getItem("CHOOSE") ?? 1);
 var current_display = choose ?? 1;
@@ -66,17 +67,30 @@ function changeDisplay(which) {
     TRAVEL.style.display = "flex";
     current_display = 4;
   }
+  else if(which === 5 ) {
+    SETTING.style.display = "flex";
+    current_display = 5;
+  }
 
-  header.querySelectorAll("button").forEach((button,index)=> {
-    if(index === which-1) {
-      button.style.background = "white";
-      button.style.color = "black";
-    }
-  })
+  if(which <= 4) {
+    header.querySelectorAll("button").forEach((button,index)=> {
+      if(index === which-1) {
+        button.style.background = "white";
+        button.style.color = "black";
+      }
+    })
+  }
 }
 
 function gotodiscover() {
   changeDisplay(2);
+}
+
+//---------------------------------------------------------------------------------------------------------
+//SETTING
+
+function gosetting() {
+  changeDisplay(5);
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -265,10 +279,16 @@ const compass_allow = localStorage.getItem("compass_allow")
 
 if (compass_allow === "true" && !is_ios()) {
   autoStartCompass();
-} else {
-  notice.style.opacity = "1"; 
-  compass_arrow.style.display = "flex"
-  compass_arrow.style.opacity = "0"
+
+}else if(compass_allow === "true" && is_ios()) {
+  autoStartCompass();
+}
+else {
+  if (notice) notice.style.opacity = "1";
+  if (compass_arrow) {
+      compass_arrow.style.display = "none";
+      compass_arrow.style.opacity = "0";
+  }
 }
 
 
@@ -282,6 +302,8 @@ function autoStartCompass() {
 }
 
 function handle_orientation(event) {
+
+  if(!compass_arrow) return;
 
   compass_arrow.style.display = "flex"
   compass_arrow.style.opacity = "1"
@@ -302,9 +324,7 @@ function handle_orientation(event) {
 }
 
 function initcompass() {
-
   
-
   if( typeof DeviceMotionEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function' ) {
     // FOR IOS
     // if ios 13+ ต้องขออนุญาตใช้ก่อน
@@ -316,15 +336,24 @@ function initcompass() {
           localStorage.setItem("compass_allow", "true");
           window.addEventListener('deviceorientation', handle_orientation, true)
 
-          notice.style.opacity = "0"
+          if (notice) notice.style.opacity = "0";
+          if (compass_arrow) compass_arrow.style.display = "flex";
         }else {
-          notice.style.opacity = "1"; 
+
+          localStorage.setItem("compass_allow", "false");
+          if(notice) notice.style.opacity = "1"; 
+          if (compass_arrow) {
+            compass_arrow.style.display = "none";
+            compass_arrow.style.opacity = "0";
+          }
         }
 
       })
 
 
   } else {
+
+    //for ANDROID / non ios
 
     localStorage.setItem("compass_allow", "true");
     
@@ -700,7 +729,7 @@ function createBOX(obj) {
   box.appendChild(button);
 
   const button2 = document.createElement("button");
-  button2.textContent = "ค้นพบ";
+  button2.textContent = "รายละเอียด";
   button2.classList.add("btndiscover")
   button2.addEventListener("click" , ()=> {
     changeDisplay(2);
