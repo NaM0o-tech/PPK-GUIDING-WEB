@@ -84,6 +84,8 @@ body {
     overflow: hidden;
 
     z-index: 3;
+
+    transition: all 0.3s;
 }
 
 .head {

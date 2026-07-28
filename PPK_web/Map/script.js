@@ -89,6 +89,7 @@ function gotodiscover() {
 //---------------------------------------------------------------------------------------------------------
 //SETTING
 
+
 const settingbutton = document.getElementById("settingbutton")
 
 settingbutton.addEventListener("click", ()=> {
@@ -98,6 +99,54 @@ settingbutton.addEventListener("click", ()=> {
 function gosetting() {
   changeDisplay(5);
 }
+
+
+//BGCOLOR
+
+const bgcolor = document.getElementById("bgcolor")
+let bgcolorvalue = localStorage.getItem("bgcolorvalue", "default") ?? "default"
+
+if(bgcolor) {
+  bgcolor.value = bgcolorvalue
+}
+
+bgcolor.addEventListener("change", (event)=> {
+  bgcolorvalue = event.target.value
+  localStorage.setItem("bgcolorvalue", bgcolorvalue)
+  update_setting()
+})
+
+
+
+
+
+function update_setting() {
+  if(!container) return;
+
+  //BGCOLOR
+  if(bgcolorvalue === "default") {
+    container.style.background = `
+      linear-gradient(
+          200deg,
+          #050816,
+          #0d1339,
+          #2e1769,
+          #3b1e69,
+          #542d78
+      )`;
+  }else if(bgcolorvalue === "blue & fuchsia") {
+    container.style.background = `
+    linear-gradient(
+        200deg, #2870c9,#eeeeee, #c42ab4
+    )`;
+  }
+
+
+}
+
+//---------------------------------------------------------------------------------------------------------
+
+update_setting();
 
 //---------------------------------------------------------------------------------------------------------
 
