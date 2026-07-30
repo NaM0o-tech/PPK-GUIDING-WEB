@@ -877,6 +877,35 @@ body {
     
 }
 
+#discovertravel_but {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0.5em;
+    left: 0.5em;
+
+    width: 6em;
+    height: 2em;
+
+    font-size: 1.3rem;
+
+    color: black;
+    background-color: lightgreen;
+    border: 2px solid green;
+
+    border-radius: 20px;
+
+    transition: all 0.2s;
+}
+
+#discovertravel_but:hover {
+    transform: scale(1.02);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(129, 129, 129);
+}
+
 
 .TRAVEL {
     justify-content: center;
@@ -1378,6 +1407,10 @@ body {
     }
     .discovertopic {
         top: 0.3em;
+    }
+    #discovertravel_but {
+        pointer-events: none;
+        opacity: 0;
     }
 
     /*SEARCH*/

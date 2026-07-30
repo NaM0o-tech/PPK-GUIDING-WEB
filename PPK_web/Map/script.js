@@ -86,67 +86,14 @@ function gotodiscover() {
   changeDisplay(2);
 }
 
-//---------------------------------------------------------------------------------------------------------
-//SETTING
+function getreplace(place) {
+  let result = place
+    ?.replace(/^สถานที่:/, "")
+    ?.replace(/^อาคาร:/, "อาคาร ")  
+    ?.replace(/^ประตู:/, "ประตู ");    
 
-
-const settingbutton = document.getElementById("settingbutton")
-
-settingbutton.addEventListener("click", ()=> {
-  gosetting();
-})
-
-function gosetting() {
-  changeDisplay(5);
+  return result?.trim();
 }
-
-
-//BGCOLOR
-
-const bgcolor = document.getElementById("bgcolor")
-let bgcolorvalue = localStorage.getItem("bgcolorvalue", "default") ?? "default"
-
-if(bgcolor) {
-  bgcolor.value = bgcolorvalue
-}
-
-bgcolor.addEventListener("change", (event)=> {
-  bgcolorvalue = event.target.value
-  localStorage.setItem("bgcolorvalue", bgcolorvalue)
-  update_setting()
-})
-
-
-
-
-
-function update_setting() {
-  if(!container) return;
-
-  //BGCOLOR
-  if(bgcolorvalue === "default") {
-    container.style.background = `
-      linear-gradient(
-          200deg,
-          #050816,
-          #0d1339,
-          #2e1769,
-          #3b1e69,
-          #542d78
-      )`;
-  }else if(bgcolorvalue === "blue & fuchsia") {
-    container.style.background = `
-    linear-gradient(
-        200deg, #2870c9,#eeeeee, #c42ab4
-    )`;
-  }
-
-
-}
-
-//---------------------------------------------------------------------------------------------------------
-
-update_setting();
 
 //---------------------------------------------------------------------------------------------------------
 
@@ -526,9 +473,9 @@ let onschool;
 let pos = document.querySelector("#POS")
 let spanpos = document.getElementById("spanpos")
 
-let mapimg = document.getElementById("MAPIMG")
+const mapimg = document.getElementById("MAPIMG")
 
-let PPKIMG = document.getElementById("ppkimg")
+const PPKIMG = document.getElementById("ppkimg")
 
 //--------------------------------------------------------------------------------------------------------
 //DISCOVER
@@ -556,6 +503,8 @@ const discoveroptions = document.querySelectorAll(".discoveroptions button")
 const discoverposition = document.getElementById("discoverposition")
 const discoverplaceposition = document.getElementById("discoverplaceposition")
 
+const discovertravelbut = document.getElementById("discovertravel_but")
+
 let discoverchoose = Number(localStorage.getItem("discoverchoose") ?? 1);
 discoverchange(discoverchoose);
 
@@ -579,18 +528,19 @@ function discoverupdate(which) {
     discoverplace.innerText = tempwhereplace ?? "....";
     discoverplace.style.color = discoverfirstcolor ?? "rgb(115, 115, 115)";
     describeplacenow(buffer_whereplace)
+
+    discovertravelbut.style.display = "none";
   }else if(which === 2) {
     discoverabout.innerText = "ผลการค้นหา";
     
-    let dis_result = discoversearch
-    ?.replace(/^สถานที่:/, "")        // ถ้าเจอ "สถานที่:" ให้ลบทิ้ง
-    ?.replace(/^อาคาร:/, "อาคาร ")  // ถ้าเจอ "อาคาร:" ให้เปลี่ยนเป็น "อาคาร " (มีช่องว่าง)
-    ?.replace(/^ประตู:/, "ประตู ");    
+    let dis_result = getreplace(discoversearch);
 
     discoverplace.innerText = dis_result?.trim() || "กรุณาค้นหาสถานที่ก่อน";
 
     discoverplace.style.color = "rgb(255, 234, 140)";
     describeplacenow(discoversearch ?? "กรุณาค้นหาสถานที่ก่อน")
+
+    discovertravelbut.style.display = "flex";
   }
 }
 discoverchange(discoverchoose);
@@ -612,6 +562,11 @@ function discoverchange(which) {
 
   discoverupdate(which);
 }
+
+discovertravelbut.addEventListener("click", ()=> {
+  changeDisplay(4);
+  startTravel(discoverplace.innerText,discoversearch);
+})
 
 //--------------------------------------------------------------------------------------------------------
 //TRAVEL
@@ -671,10 +626,7 @@ navigator.geolocation.watchPosition(
 
       whereplace = Where_Are_You(lat,lon,describe)
 
-      let des_result = whereplace
-      ?.replace(/^สถานที่:/, "")
-      ?.replace(/^อาคาร:/, "อาคาร ")
-      ?.replace(/^ประตู:/, "ประตู ");
+      let des_result = getreplace(whereplace);
 
       describe.innerText = `${des_result}` /* TELL WHERE ARE UUUUU*/
 
@@ -775,10 +727,7 @@ function createBOX(obj) {
   const title = document.createElement("h4");
   box.appendChild(title);
 
-  let tempitem = item
-    ?.replace(/^สถานที่:/, "")
-    ?.replace(/^อาคาร:/, "อาคาร ")
-    ?.replace(/^ประตู:/, "ประตู ");
+  let tempitem = getreplace(item);
 
   title.textContent = tempitem;
 
@@ -870,7 +819,7 @@ mapcom_youarehere.textContent = "คุณอยู่ที่นี่";
 let mapcom_place = document.createElement("div")
 
 //place เป็นตัวกลาง
-let mapcomx_change = 0;
+let mapcomx_change = 3;
 let mapcomy_change = 10;
 
 
@@ -923,10 +872,7 @@ var starttravelsearch = (localStorage.getItem("starttravelsearch"));
 var tempstarttravelsearch;
 if (starttravelsearch !== null && starttravelsearch !== "null") {
 
-  let travel_result = starttravelsearch
-    ?.replace(/^สถานที่:/, "")
-    ?.replace(/^อาคาร:/, "อาคาร ")
-    ?.replace(/^ประตู:/, "ประตู ");
+  let travel_result = getreplace(starttravelsearch);
 
   tempstarttravelsearch = travel_result
 
@@ -937,6 +883,14 @@ if (starttravelsearch !== null && starttravelsearch !== "null") {
 var starttra;
 
 function startTravel(PLACE,EXTPLACE) {
+
+  const PLACE_COORDS = Placecoords[EXTPLACE];
+
+  if (!PLACE_COORDS) {
+    console.error("ไม่พบพิกัดสำหรับสถานที่:", EXTPLACE);
+    stopTravel();
+    return;
+  }
 
   travelplace.innerText = PLACE;
   travelplace.style.color = "yellow";
@@ -955,7 +909,7 @@ function startTravel(PLACE,EXTPLACE) {
 
   starttravelsearch = EXTPLACE;
 
-  const PLACE_COORDS = Placecoords[EXTPLACE];
+  
 
   mark_search(marker,PLACE_COORDS.minlon,PLACE_COORDS.maxlat,PLACE_COORDS.maxlon,PLACE_COORDS.minlat);
 
@@ -977,7 +931,7 @@ function startTravel(PLACE,EXTPLACE) {
   }else {
     mapcomy_change = -5;
   }
-  mapcom_place.style.top = `${top + mapcomy_change}%`
+  mapcom_place.style.top = `${top - mapcomy_change}%`
 
   // if(tempPOSleft >= left) {
   //   mapcomx_change = 5;
@@ -1004,10 +958,6 @@ function stopTravel() {
 }
 
 //------------------------------------------------------------------------------------------------------------------
-
-function Setting() {
-  alert("การตั้งค่ากำลังมาเร็วๆนี้ :)");
-}
 
 function mark_search(mark,minx,miny,maxx,maxy) {
 
@@ -1588,3 +1538,82 @@ function IMG_FOR_MAP (yourplace) {
       ]
   }
 }
+
+//---------------------------------------------------------------------------------------------------------
+//SETTING
+
+
+const settingbutton = document.getElementById("settingbutton")
+
+settingbutton.addEventListener("click", ()=> {
+  gosetting();
+})
+
+function gosetting() {
+  changeDisplay(5);
+}
+
+
+//BGCOLOR
+
+const bgcolor = document.getElementById("bgcolor")
+let bgcolorvalue = localStorage.getItem("bgcolorvalue", "default") ?? "default"
+
+if(bgcolor) {
+  bgcolor.value = bgcolorvalue
+}
+
+bgcolor.addEventListener("change", (event)=> {
+  bgcolorvalue = event.target.value
+  localStorage.setItem("bgcolorvalue", bgcolorvalue)
+  update_setting()
+})
+
+//MAPSTYLE
+
+const mapstyle = document.getElementById("mapstyle")
+let mapstylevalue = localStorage.getItem("mapstylevalue", "diagram") ?? "diagram"
+
+
+mapstyle.addEventListener("change", (event)=> {
+  mapstylevalue = event.target.value
+  localStorage.setItem("mapstylevalue", mapstylevalue)
+  update_setting()
+})
+
+function update_setting() {
+  if(!container) return;
+
+  //BGCOLOR
+  if(bgcolorvalue === "default") {
+    container.style.background = `
+      linear-gradient(
+          200deg,
+          #050816,
+          #0d1339,
+          #2e1769,
+          #3b1e69,
+          #542d78
+      )`;
+  }else if(bgcolorvalue === "blue & fuchsia") {
+    container.style.background = `
+    linear-gradient(
+        200deg, #2870c9,#eeeeee, #c42ab4
+    )`;
+  }
+
+  //MAPSTYLE
+
+  if(mapstylevalue === "diagram") {
+    mapimg.src = "../../PPK_assets/ppk_map.svg"
+  }else if(mapstylevalue === "satellite") {
+    mapimg.src = "../../PPK_assets/ppk_map2.png"
+  }
+
+}
+
+//---------------------------------------------------------------------------------------------------------
+
+update_setting();
+
+//---------------------------------------------------------------------------------------------------------
