@@ -3,6 +3,7 @@
 * {
     font-family: "Noto Sans Thai", sans-serif;
     font-weight: 670;
+    box-sizing: border-box;
 }
 
 /* background: linear-gradient(180deg, #63a9ff,#ffffff, #ff71f1) ; */
@@ -20,7 +21,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    height: 100vh;
+    height: 100dvh;
 
     margin: 0;
     padding: 0;
@@ -31,8 +32,8 @@ body {
 .container {
     display: flex;
 
-    width: 24em;
-    height: 90%;
+    width: clamp(20em, 90%, 23em);
+    height: clamp(500px, 90%, 700px);
 
     background: linear-gradient(
         180deg, #9dc9ff,#ffffff, #ffaef7
@@ -143,7 +144,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    width: 10em;
+    width: clamp(9em, 90%, 15em);
     height: 3em;
 
     position: absolute;
@@ -185,3 +186,4 @@ body {
     margin: 0;
     padding: 0;
 }
+
