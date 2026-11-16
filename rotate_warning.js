@@ -48,6 +48,22 @@
             max-width: 280px;
             line-height: 1.5;
         }
+
+        #rotate-warning-dismiss {
+            background: #288cff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #rotate-warning-dismiss:hover {
+            background: #1573e0;
+            transform: scale(1.03);
+        }
     
     `;
     document.head.appendChild(style);
@@ -63,14 +79,24 @@
         </svg>
         <h2>ช้าก่อน!</h2>
         <p>กรุณาหมุนอุปกรณ์ของคุณ เว็บไซต์นี้ทำงานได้ดีในแนวตั้งเท่านั้น</p>
+        <button id="rotate-warning-dismiss">ดูต่อในแนวนอน</button>
     `;
     document.body.appendChild(warningDiv);
 
+    let userDismissed = sessionStorage.getItem('rotate_warning_dismissed') === 'true';
+
+    document.getElementById('rotate-warning-dismiss').addEventListener('click', function() {
+        userDismissed = true;
+        sessionStorage.setItem('rotate_warning_dismissed', 'true');
+        warningDiv.style.display = 'none';
+    });
+
     function checkOrientation() {
-        const isLandscape = window.innerWidth > window.innerHeight;
+        //const isLandscape = window.innerWidth > window.innerHeight;
+        const isLandscape = window.innerHeight < 500;
         const isMobile = window.innerWidth <= 900;
 
-        if(isLandscape && isMobile) {
+        if(isLandscape) {
             warningDiv.style.display = 'flex';
         } else {
             warningDiv.style.display = 'none';
